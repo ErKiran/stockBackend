@@ -173,7 +173,7 @@ func (server *Server) CreateStockWatch(w http.ResponseWriter, r *http.Request) {
 	}
 	userID, err := auth.ExtractTokenID(r)
 	if err != nil {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+		responses.ERROR(w, http.StatusUnauthorized, errors.New("unauthorized"))
 		return
 	}
 	stockWatch.UserID = int64(userID)
@@ -192,7 +192,7 @@ func (server *Server) GetStockWatchOfUser(w http.ResponseWriter, r *http.Request
 
 	userID, err := auth.ExtractTokenID(r)
 	if err != nil {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+		responses.ERROR(w, http.StatusUnauthorized, errors.New("unauthorized"))
 		return
 	}
 	stockInfo, err := stockWatch.GetStockWatchByUserID(server.DB, int64(userID))
